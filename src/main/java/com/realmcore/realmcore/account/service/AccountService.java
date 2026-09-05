@@ -4,6 +4,7 @@ import com.realmcore.realmcore.account.dto.CreateAccountRequest;
 import com.realmcore.realmcore.account.model.Account;
 import com.realmcore.realmcore.account.model.AccountStatus;
 import com.realmcore.realmcore.account.repository.AccountRepository;
+import com.realmcore.realmcore.common.exception.UsernameAlreadyExistsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class AccountService {
 
     public Account createAccount(CreateAccountRequest request) {
         if (accountRepository.findByUsername(request.getUsername()).isPresent()) {
-            throw new IllegalArgumentException("Username already exists");
+            throw new UsernameAlreadyExistsException();
         }
         Account account = new Account();
 

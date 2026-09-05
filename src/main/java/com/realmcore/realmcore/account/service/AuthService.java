@@ -5,6 +5,7 @@ import com.realmcore.realmcore.account.dto.LoginResponse;
 import com.realmcore.realmcore.account.model.Account;
 import com.realmcore.realmcore.account.model.AccountStatus;
 import com.realmcore.realmcore.account.repository.AccountRepository;
+import com.realmcore.realmcore.common.exception.InvalidCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class AuthService {
     public LoginResponse login(LoginRequest request) {
 
         Account account = accountRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid useraname or password"));
+                .orElseThrow(InvalidCredentialsException::new);
 
         if (account.getStatus() != AccountStatus.ACTIVE) {
             throw new IllegalArgumentException("Account is not active");
@@ -37,7 +38,7 @@ public class AuthService {
                 request.getPassword(),
                 account.getPasswordHash())) {
 
-            throw new IllegalArgumentException("Invalid username or password");
+            throw new InvalidCredentialsException();
         }
 
         account.setLastLogin(LocalDateTime.now());
