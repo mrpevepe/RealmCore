@@ -37,4 +37,15 @@ public class AccountService {
 
         return accountRepository.save(account);
     }
+
+    public Account getAccountByUsername(String username) {
+        return accountRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Account not found"));
+    }
+
+    public Account getAccountById(Long id) {
+        return accountRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Account not found"));
+    }
+
 }

@@ -7,10 +7,7 @@ import com.realmcore.realmcore.account.service.AccountService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/accounts")
@@ -29,6 +26,24 @@ public class AccountController {
         AccountResponse response = new AccountResponse(account);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<AccountResponse> getAccount(
+            @PathVariable String username) {
+
+        Account account = accountService.getAccountByUsername(username);
+
+        return ResponseEntity.ok(new AccountResponse(account));
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<AccountResponse> getAccountById(
+            @PathVariable Long id) {
+
+        Account account = accountService.getAccountById(id);
+
+        return ResponseEntity.ok(new AccountResponse(account));
     }
 
 }
