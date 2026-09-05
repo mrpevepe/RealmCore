@@ -5,20 +5,17 @@ import com.realmcore.realmcore.account.model.AccountStatus;
 
 import java.time.LocalDateTime;
 
-public class AccountResponse {
+public class LoginResponse {
+
     private final Long id;
     private final String username;
-    private final String email;
     private final AccountStatus status;
-    private final LocalDateTime createdAt;
     private final LocalDateTime lastLogin;
 
-    public AccountResponse(Account account) {
+    public LoginResponse(Account account) {
         this.id = account.getId();
         this.username = account.getUsername();
-        this.email = account.getEmail();
         this.status = account.getStatus();
-        this.createdAt = account.getCreatedAt();
         this.lastLogin = account.getLastLogin();
     }
 
@@ -30,16 +27,8 @@ public class AccountResponse {
         return username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public AccountStatus getStatus() {
         return status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
     }
 
     public LocalDateTime getLastLogin() {
