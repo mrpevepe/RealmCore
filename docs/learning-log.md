@@ -1,6 +1,95 @@
 ### Learning Log
 
 <details open>
+<summary><b>📅 06-09-2026 - Character & Item Systems</b></summary>
+
+### Objetivos do Dia
+- [x] Organizar o módulo de autenticação
+- [x] Implementar o sistema de personagens
+- [x] Criar relacionamento entre contas e personagens
+- [x] Implementar o sistema básico de itens
+- [x] Trabalhar com relacionamentos JPA
+- [x] Aprofundar o conhecimento na arquitetura Modular Monolith
+
+---
+
+### O que foi Implementado
+
+#### Auth
+- Movido o módulo de autenticação para um módulo próprio em `com.realmcore.auth`
+- Separados `AuthController` e `AuthService` do módulo de `Account`
+- Mantido o fluxo de autenticação funcionando após a reorganização
+
+#### Character
+- Criada a entidade `Character`
+- Implementada a relação **Many-to-One** entre `Character` e `Account`
+- Uma conta pode possuir múltiplos personagens
+- Criado fluxo de criação de personagens
+- Implementada validação de nomes duplicados
+- Criados endpoints para:
+    - Criar personagem
+    - Buscar personagens de uma conta
+    - Buscar personagem por ID
+- Definidos valores iniciais de personagem pelo backend, como nível 1 e experiência 0
+
+#### Item
+- Criada a entidade `Item`
+- Criado `ItemType` para categorizar os itens
+- Implementado cadastro de itens
+- Implementada validação de nomes duplicados
+- Criados endpoints para:
+    - Criar item
+    - Buscar item por ID
+- Criados campos iniciais como nível requerido e possibilidade de empilhamento (`stackable`)
+
+---
+
+### Conceitos Aprendidos
+
+- Organização de módulos por **domínio/feature**
+- Diferença entre **Account** e **Authentication**
+- Relacionamento `@ManyToOne` no JPA
+- Uso de `@JoinColumn`
+- Criação de restrições de unicidade com `@UniqueConstraint`
+- Relacionamento entre entidades e chaves estrangeiras
+- Separação entre definição de um `Item` e sua futura posse por um personagem
+- Uso de DTOs para entrada e saída de dados
+- Regras de negócio no Service
+- Persistência de relacionamentos utilizando Spring Data JPA
+
+---
+
+### Decisões de Arquitetura
+
+> **Account e Auth foram separados em módulos diferentes.**
+>
+> `Account` representa o domínio da conta, enquanto `Auth` representa as responsabilidades relacionadas à autenticação. Essa separação facilita a evolução futura do sistema, especialmente com a implementação de tokens e autenticação baseada em sessão/JWT.
+
+> **Item representa a definição de um item do jogo.**
+>
+> O `Item` não representa diretamente um item dentro do inventário de um jogador. A ideia é que, futuramente, monstros possam possuir tabelas de drop e os itens obtidos sejam adicionados ao inventário dos personagens.
+
+---
+
+### Visão de Longo Prazo
+
+A ideia futura do RealmCore é servir como backend para um MMORPG, onde o jogador poderá:
+
+- Criar uma conta
+- Criar personagens
+- Explorar o mundo
+- Encontrar e combater monstros
+- Ganhar experiência
+- Receber itens através de drops
+- Gerenciar inventário
+- Equipar itens
+- Evoluir o personagem
+
+Essa visão será implementada gradualmente, mantendo o desenvolvimento dividido em módulos e evitando antecipar sistemas que ainda não são necessários.
+
+</details>
+
+<details open>
 <summary><b>📅 05-09-2026 - Account & Autenticação</b></summary>
 
 ### Objetivos do Dia
