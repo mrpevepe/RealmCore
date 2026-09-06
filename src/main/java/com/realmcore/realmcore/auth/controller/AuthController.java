@@ -1,8 +1,8 @@
-package com.realmcore.realmcore.account.controller;
+package com.realmcore.realmcore.auth.controller;
 
 import com.realmcore.realmcore.account.dto.LoginRequest;
 import com.realmcore.realmcore.account.dto.LoginResponse;
-import com.realmcore.realmcore.account.service.AuthService;
+import com.realmcore.realmcore.auth.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

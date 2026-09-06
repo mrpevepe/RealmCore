@@ -57,4 +57,20 @@ public class GlobalExceptionHandler {
                 .body(body);
     }
 
+    @ExceptionHandler(CharacterNameAlreadyExistsException.class)
+    public ResponseEntity<Map<String, Object>> handleCharacterNameAlreadyExists(
+            CharacterNameAlreadyExistsException exception) {
+
+        Map<String, Object> body = Map.of(
+                "timestamp", LocalDateTime.now(),
+                "status", HttpStatus.CONFLICT.value(),
+                "error", "Conflict",
+                "message", exception.getMessage()
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(body);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.realmcore.realmcore.account.service;
+package com.realmcore.realmcore.auth.service;
 
 import com.realmcore.realmcore.account.dto.LoginRequest;
 import com.realmcore.realmcore.account.dto.LoginResponse;
