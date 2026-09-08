@@ -1,5 +1,30 @@
 ### Learning Log
 
+
+<details>
+<summary><b>📅 07-09-2026 - Character, Item & Inventory</b></summary>
+
+### Implementado
+
+- Finalização do sistema de **Character**.
+- Implementação do sistema de **Item**, separando a definição do item da posse do jogador.
+- Implementação do **Inventory** baseado em slots.
+- Suporte para itens **stackable** e **non-stackable**.
+- Itens não empilháveis agora ocupam um slot diferente para cada unidade.
+- Itens empilháveis utilizam o mesmo slot e aumentam sua quantidade.
+- Adicionada capacidade máxima de slots e controle transacional na adição de itens.
+
+### Aprendizados
+
+- Diferença entre a definição de um **Item** e um **InventoryItem**.
+- Relacionamentos entre entidades usando JPA.
+- Uso de `@Transactional`.
+- Uso de `UniqueConstraint` para garantir que cada slot do inventário seja único por personagem.
+- Importância de pensar na escalabilidade sem implementar funcionalidades antes da hora.
+
+</details>
+
+
 <details open>
 <summary><b>📅 06-09-2026 - Character & Item Systems</b></summary>
 
